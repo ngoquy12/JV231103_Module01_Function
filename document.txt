@@ -8,6 +8,7 @@ Quy tắc đặt tên hàm
   + Đối với những hàm nào thực hiện chỉnh sửa thì bắt đầu bằng từ set hoặc update
    Ví dụ: setUserName, updateInfo,...
   + Viết bằng tiếng anh, không dấu và phải có ý nghĩa
+  
 Tham số trong hàm:
   + Tham số những giá trị được truyền vào tại thời điểm hàm được khai báo
   + Tham số trong hàm không giới hạn số lượng và kiểu dữ liệu

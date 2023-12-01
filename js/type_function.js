@@ -1,105 +1,75 @@
-// Trong JS thông thường có 3 loại function
-// 1. Declaration function
-// 2. Expression function
-// 3. Arrow function
-// 4. Generation function (redux saga)
+// Đối tượng Date => Phải sử dụng từ khóa new để tạo đối tượng
 
-// 1. Declation function
-// Cú pháp: function ten_function (tham_so) { // logic code }
-// Chú ý: Function Declation có cơ chế hosting ()
-// Phạm vi sử dụng biến: Những biến được khai báo với từ khóa let, const trong function thì phạm vi sử dụng
-// của biến đó chỉ nằm trong khối block (function)
-// Nếu khai báo function loại này mà trùng tên nhau thì nó sẽ lấy giá trị của hàm được khai báo sau
+// 1. Lấy ra thời gian hiện tại trên máy
+let today = new Date();
+console.log(today);
 
-// Xây dựng một hàm tính tổng hai số a và b
+// Lấy ra ngày, tháng, năm, giờ, phút, giây, mili giây
+let day = today.getDate();
+console.log("Ngày: ", day);
 
-function sum(a, b) {
-  let c = 10;
-  // logic code
-  return a + b;
-}
+let month = today.getMonth() + 1;
+console.log("Tháng: ", month);
 
-function sum(a, b) {
-  let c = 10;
-  // logic code
-  return a - b;
-}
+let year = today.getFullYear();
+console.log("Năm: ", year);
 
-function sum(a, b) {
-  let c = 10;
-  // logic code
-  return a * b;
-}
+let hours = today.getHours();
+console.log("Giờ: ", hours);
 
-console.log(sum(1, 3));
+let minutes = today.getMinutes();
+console.log("Phút: ", minutes);
 
-// 2. Expression function
+let seconds = today.getSeconds();
+console.log("Giây: ", seconds);
 
-// let ten_ham = function (tham_so) {
-//    logic code
-// }
-// Chú ý: hàm này không có cơ chế hosting
-// Nếu như khai báo với từ khóa var thì chúng ta có thể khai báo lại được và
-// nó sẽ lấy kết quả của hàm được khai báo sau cùng
+let miliSeconds = today.getMilliseconds();
+console.log("Mili giây: ", miliSeconds);
 
-var subtraction = function (a, b) {
-  return a + b;
-};
+// Định dạng chuỗi thời gian
+// 1. Định dạng kiểu ngày/tháng/năm
+let formatDMY = `${day}/${month}/${year}`;
+console.log("Định dạng ngày/tháng/năm: ", formatDMY);
+// 2. Định dạng kiểu năm/tháng/ngày
+let formatYMD = `${year}/${month}/${day}`;
+console.log("Định dạng năm/tháng/ngày: ", formatYMD);
 
-var subtraction = function (a, b) {
-  return a * b;
-};
+// Viết hàm format thời gian dựa vào một chuỗi thời gian đã cho
+// 11/10/2023 8:06:13 SA
 
-console.log(subtraction(4, 5));
-
-// 3. Arrow function
-// Cú pháp : tu_khoa_khai_bao ten_ham = (tham_so) => { logic code }
-// Không có cơ chế hosting
-// Khuyến cáo: Nên khai báo với từ khóa const, không nên sử dụng với từ khóa var
-
-// Khi sử dụng hàm thì yêu cầu phải bắt try-catch cho hàm để tránh việc hàm bị dừng đột ngôt, làm cho chương
-// trình bị chết
-// Khi chương trình thành công thì nó sẽ lọt vào try
-// Khi có lỗi xảy ra thì nó sẽ lọt vào trong catch
-// Khi thành công hoặc thất bại thì mặc định nó đều chạy vào finally
+let time = "Fri Dec 01 2023 08:57:28 GMT+0700 (Giờ Đông Dương)";
 
 /**
- * Thực hiện nhân hai số
- * @param {*} a Số thứ nhất
- * @param {*} b Số thứ 2
- * @returns Kết quả của phép nhân hai số
- * Auth: NVQUY(30/11/2023)
+ * Format định dạng thời gian: ngày/tháng/năm
+ * @param {*} timeString Chuỗi thời gian cần định dạng
+ * @returns Chuỗi định dạng ngày/tháng/năm
+ * Auth: NVQUY(01/12/2023)
  */
-const multiplication = (a, b) => {
-  try {
-    hihi();
-    throw new Error("Có lỗi");
-    // console.log("Thành công");
-  } catch (error) {
-    console.log("Xử lý lỗi", error);
-  } finally {
-    console.log("Kết thúc");
+const formatDate = (timeString) => {
+  // Lấy ra thời gian hiện tại bằng đối tượng new Date() và truyền vào nó chuỗi thời gian cần format
+  let today = new Date(timeString);
+
+  // Lấy ra ngày của chuỗi cần định dạng
+  let day = today.getDate();
+  if (day > 0 && day < 10) {
+    day = `0${day}`;
   }
+
+  // lấy ra tháng của chuỗi cần định dạng
+  let month = today.getMonth() + 1;
+  if (month > 0 && month < 10) {
+    month = `0${month}`;
+  }
+
+  // Lấy ra năm của chuỗi cần định dạng
+  let year = today.getFullYear();
+
+  // Trả ra chuỗi định dạng
+  return `${day}/${month}/${year}`;
 };
 
-// Bài tập cơ bản:
-// 1. Viết một hàm JavaScript để tính tổng của hai số.
+console.log(formatDate(time));
 
-// 2. Viết một hàm JavaScript nhận vào một mảng số nguyên và trả về tổng của các số đó.
-
-// 3. Viết một hàm JavaScript để kiểm tra xem một số có phải là số nguyên tố hay không.
-
-//. 4. Viết một hàm JavaScript để đảo ngược một chuỗi.
-
-// Bài tập nâng cao:
-// 5. Viết một hàm JavaScript nhận vào một mảng các số và trả về một mảng mới chỉ chứa số chẵn.
-
-// 6. Viết một hàm JavaScript nhận vào một chuỗi và trả về số lượng từ trong chuỗi.
-
-// 7. Viết một hàm JavaScript nhận vào một mảng các chuỗi và trả về một mảng mới chỉ
-// chứa các chuỗi đã được viết hoa.
-
-// Viết một hàm JavaScript nhận vào một mảng số và trả về mảng mới
-// chứa các số đã được sắp xếp theo thứ tự tăng dần.
-
-// Viết một hàm JavaScript nhận vào một số nguyên dương và trả về mảng các số nguyên tố nhỏ hơn số đó.
+// Chuyển đổi thời gian hiện tại theo quy chuẩn ISOS và cắt chuỗi theo định dạng năm/tháng/ngày
+let formatToLocal = new Date().toISOString().split("T")[0];
+console.log("formatToLocal: ", formatToLocal);
